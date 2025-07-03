@@ -1,0 +1,483 @@
+/* Reset */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Poppins', sans-serif;
+  background-color: #151515;
+  color: white;
+  min-height: 100vh;
+  position: relative;
+  overflow-x: hidden;
+  padding-top: 100px;
+}
+
+/* Header */
+header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  padding: 20px;
+  background-color: #151515;
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 1000;
+}
+
+.logo img {
+  height: 60px;
+}
+
+nav ul {
+  list-style: none;
+  display: flex;
+  gap: 40px;
+}
+
+nav ul li a {
+  text-decoration: none;
+  color: white;
+  font-weight: 500;
+}
+
+.user-settings img {
+  height: 30px;
+  cursor: pointer;
+}
+
+/* Menú desplegable */
+.user-menu-dropdown {
+  display: none;
+  position: absolute;
+  top: 70px;
+  right: 20px;
+  background-color: #333;
+  padding: 10px;
+  border-radius: 5px;
+  z-index: 1000;
+}
+
+.user-menu-dropdown ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.user-menu-dropdown ul li a {
+  display: block;
+  padding: 10px;
+  text-decoration: none;
+  color: white;
+  font-size: 14px;
+}
+
+.user-menu-dropdown ul li a:hover {
+  background-color: #444;
+}
+
+/* INDEX */
+.index-page {
+  background-image: url("../imagenes/salon-belleza.jpg");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  height: 100vh;
+  position: relative;
+}
+
+.index-overlay {
+  background-color: rgba(0, 0, 0, 0.65);
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.hero-section {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 60px;
+  text-align: center;
+  max-width: 700px;
+}
+
+.text-container h1 {
+  font-family: 'Body Grotesque', sans-serif;
+  font-size: 48px;
+  margin-bottom: 20px;
+}
+
+.text-container p {
+  font-size: 18px;
+  margin-bottom: 30px;
+}
+
+.agenda-button {
+  padding: 15px 30px;
+  background-color: transparent;
+  border: 2px solid white;
+  color: white;
+  font-size: 16px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.agenda-button:hover {
+  background-color: white;
+  color: black;
+}
+
+/* CONTACTO (Fondo completo) */
+.contact-page {
+  background-image: url("../imagenes/contacto.jpg");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  height: 100vh;
+  position: relative;
+}
+
+.contact-overlay {
+  background-color: rgba(0, 0, 0, 0.6);
+  height: 100%;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.contact-centered {
+  text-align: center;
+  padding: 40px;
+}
+
+.contact-centered h1 {
+  font-size: 36px;
+  margin-bottom: 30px;
+  font-family: 'Body Grotesque', sans-serif;
+}
+
+.contact-centered p {
+  font-size: 18px;
+  margin-bottom: 15px;
+}
+
+/* PRODUCTOS */
+.products-section {
+  padding: 0 40px 80px;
+}
+
+.product-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 40px;
+  margin-top: 30px;
+}
+
+.product-item {
+  background-color: #1f1f1f;
+  border-radius: 10px;
+  padding: 20px;
+  text-align: center;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.product-item:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 4px 15px rgba(255, 255, 255, 0.1);
+}
+
+.product-item img {
+  width: 100%;
+  height: 220px;
+  object-fit: cover;
+  border-radius: 8px;
+  margin-bottom: 15px;
+}
+
+.product-item p {
+  font-size: 16px;
+  line-height: 1.4;
+}
+
+.marcas-aliadas {
+  text-align: center;
+  margin-top: 40px;
+  font-size: 18px;
+  font-weight: 500;
+  color: #ccc;
+}
+
+/* SERVICIOS */
+.services-section {
+  padding: 0 40px 80px;
+}
+
+.service-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 40px;
+  margin-top: 30px;
+}
+
+.service-item {
+  background-color: #1f1f1f;
+  border-radius: 10px;
+  overflow: hidden;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.service-item:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 4px 15px rgba(255, 255, 255, 0.1);
+}
+
+.service-item img {
+  width: 100%;
+  height: 220px;
+  object-fit: cover;
+  display: block;
+}
+
+/* AGENDAR FORMULARIO */
+.agendar-page {
+  background-image: url("../imagenes/agendar.jpg");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  height: 100vh;
+  position: relative;
+}
+
+.agendar-overlay {
+  background-color: rgba(0, 0, 0, 0.65);
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.agendar-content {
+  text-align: center;
+  padding: 40px;
+  max-width: 500px;
+  width: 100%;
+}
+
+.agendar-content h1 {
+  font-size: 36px;
+  margin-bottom: 30px;
+}
+
+.agendar-content form {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.agendar-content input,
+.agendar-content select {
+  padding: 12px;
+  font-size: 16px;
+  border: none;
+  border-radius: 5px;
+}
+
+.agendar-content button {
+  padding: 12px;
+  font-size: 16px;
+  border: 2px solid white;
+  background-color: transparent;
+  color: white;
+  cursor: pointer;
+}
+
+.agendar-content button:hover {
+  background-color: white;
+  color: black;
+}
+
+#mensaje-cita {
+  font-size: 14px;
+  color: #4CAF50;
+}
+
+/* LOGIN / REGISTRO */
+.login-page {
+  background-image: url("../imagenes/salon-belleza.jpg");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.login-overlay {
+  background-color: rgba(0, 0, 0, 0.7);
+  padding: 60px 30px;
+  border-radius: 10px;
+  backdrop-filter: blur(4px);
+}
+
+.login-box {
+  max-width: 400px;
+  width: 100%;
+  text-align: center;
+}
+
+.login-box h2 {
+  margin-bottom: 30px;
+  font-size: 28px;
+  color: white;
+}
+
+.login-box input,
+.login-box select {
+  width: 100%;
+  padding: 15px;
+  margin-bottom: 20px;
+  border: 1px solid #fff;
+  background-color: transparent;
+  color: white;
+  font-size: 16px;
+  font-family: 'Poppins', sans-serif;
+}
+
+.login-box button {
+  width: 100%;
+  padding: 15px;
+  background-color: white;
+  color: black;
+  border: none;
+  font-size: 16px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.login-box button:hover {
+  background-color: #f2f2f2;
+}
+
+.login-box p a {
+  color: #ccc;
+  text-decoration: underline;
+  font-size: 14px;
+}
+
+/* ADMIN PAGE */
+.admin-page {
+  padding: 40px;
+  background-color: #151515;
+  min-height: 100vh;
+  color: white;
+}
+
+.admin-content {
+  max-width: 1000px;
+  margin: 0 auto;
+  text-align: center;
+}
+
+.admin-content h1 {
+  font-size: 32px;
+  margin-bottom: 30px;
+}
+
+.admin-content table {
+  width: 100%;
+  border-collapse: collapse;
+  background-color: #222;
+  margin-top: 20px;
+}
+
+.admin-content th,
+.admin-content td {
+  padding: 12px;
+  border: 1px solid #444;
+}
+
+.admin-content th {
+  background-color: #333;
+  font-weight: 600;
+}
+
+.admin-content tr:nth-child(even) {
+  background-color: #1f1f1f;
+}
+
+/* Footer */
+footer {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  background-color: #151515;
+  color: white;
+  text-align: center;
+  padding: 20px 0;
+  z-index: 999;
+}
+
+footer p {
+  margin-bottom: 10px;
+}
+
+.social-icons {
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+}
+
+.social-icons img {
+  height: 35px;
+  transition: transform 0.3s ease;
+}
+
+.social-icons img:hover {
+  transform: scale(1.1);
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  nav ul {
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .product-grid,
+  .service-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .text-container h1 {
+    font-size: 30px;
+  }
+
+  .agenda-button {
+    padding: 12px 20px;
+  }
+
+  .login-box input {
+    font-size: 14px;
+  }
+
+  .admin-content table {
+    font-size: 14px;
+  }
+
+  .contact-centered h1 {
+    font-size: 28px;
+  }
+}
