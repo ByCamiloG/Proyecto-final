@@ -4,29 +4,96 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-  <title>Administrador - Citas Agendadas</title>
+  <title>Mis Citas - Gildardo Gutiérrez</title>
   <link rel="stylesheet" href="styles.css">
+
+  <style>
+    .admin-page {
+      background-image: url('imagenes/salon-belleza.jpg');
+      background-size: cover;
+      background-position: center;
+      min-height: 100vh;
+      padding: 50px 20px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .tabla-citas {
+      background-color: rgba(255, 255, 255, 0.9);
+      border-radius: 16px;
+      padding: 20px;
+      max-width: 1000px;
+      width: 100%;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+    }
+
+    .tabla-citas h2 {
+      text-align: center;
+      margin-bottom: 20px;
+      color: #333;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      color: #000;
+    }
+
+    th, td {
+      padding: 12px 15px;
+      border: 1px solid #ccc;
+      text-align: center;
+    }
+
+    th {
+      background-color: #000;
+      color: white;
+    }
+
+    td {
+      background-color: white;
+    }
+
+    .btn-eliminar {
+      background-color: #f44336;
+      color: white;
+      border: none;
+      padding: 6px 12px;
+      cursor: pointer;
+      border-radius: 8px;
+    }
+
+    @media screen and (max-width: 768px) {
+      .tabla-citas {
+        padding: 10px;
+      }
+
+      table, th, td {
+        font-size: 14px;
+      }
+    }
+  </style>
 </head>
 <body>
 
 <main class="admin-page">
-  <div class="admin-content">
-    <h1>CITAS AGENDADAS</h1>
-    <p id="admin-email"></p>
-    <table>
+  <div class="tabla-citas">
+    <h2>Citas Agendadas</h2>
+    <table id="tabla-citas">
       <thead>
         <tr>
           <th>Nombre</th>
           <th>Servicio</th>
           <th>Fecha</th>
           <th>Hora</th>
+          <th>Acción</th>
         </tr>
       </thead>
-      <tbody id="citas-body">
-        <!-- Las citas se insertan aquí -->
+      <tbody>
+        <!-- Las filas se insertarán aquí con JavaScript -->
       </tbody>
     </table>
-    <p id="estado-admin" style="margin-top: 20px; color: #f66;"></p>
   </div>
 </main>
 
@@ -34,11 +101,11 @@
 
 <!-- Firebase SDKs -->
 <script src="https://www.gstatic.com/firebasejs/11.10.0/firebase-app-compat.js"></script>
-<script src="https://www.gstatic.com/firebasejs/11.10.0/firebase-auth-compat.js"></script>
 <script src="https://www.gstatic.com/firebasejs/11.10.0/firebase-database-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/11.10.0/firebase-auth-compat.js"></script>
 
 <script>
-  // Configuración Firebase
+  // Configuración de Firebase
   const firebaseConfig = {
     apiKey: "AIzaSyCDZvWq953WtoXTR-BvNDT-qiaocjrmeyM",
     authDomain: "peluqueriagildardo.firebaseapp.com",
@@ -48,76 +115,77 @@
     messagingSenderId: "585702751886",
     appId: "1:585702751886:web:41553292b19d9aa5cc13df"
   };
+
   firebase.initializeApp(firebaseConfig);
 
-  // Función para cerrar sesión (por si se llama desde menú)
-  function cerrarSesion() {
-    firebase.auth().signOut()
-      .then(() => window.location.href = "login.jsp")
-      .catch(err => console.error("Error al cerrar sesión", err));
-  }
+  const tabla = document.getElementById('tabla-citas').getElementsByTagName('tbody')[0];
 
-  // Función segura para mostrar valores aunque estén mal formateados
-  function obtenerValor(campo) {
-    if (typeof campo === "string") return campo;
-    if (typeof campo === "object" && campo !== null) {
-      const primeraClave = Object.keys(campo)[0];
-      return campo[primeraClave] || "-";
+  const ADMIN_EMAIL = "juanca.9738@gmail.com"; // Cambia a tu correo de admin
+
+  firebase.auth().onAuthStateChanged((user) => {
+    if (!user || user.email !== ADMIN_EMAIL) {
+      alert("Acceso denegado. Solo el administrador puede ver esta página.");
+      window.location.href = "index.jsp";
+      return;
     }
-    return "-";
-  }
 
-  // Cargar citas desde Firebase
+    cargarCitas();
+
+    // Mostrar saludo y ocultar "Iniciar sesión" si el usuario está logueado
+    if (user.displayName) {
+      const saludo = document.getElementById("saludoUsuario");
+      if (saludo) saludo.textContent = `Hola ${user.displayName}`;
+    }
+
+    const loginBtn = document.getElementById("loginOption");
+    if (loginBtn) loginBtn.style.display = "none";
+  });
+
   function cargarCitas() {
-    const citasRef = firebase.database().ref("citas");
+    firebase.database().ref('citas').on('value', (snapshot) => {
+      tabla.innerHTML = "";
 
-    citasRef.on("value", snapshot => {
-      const citas = snapshot.val();
-      const tbody = document.getElementById("citas-body");
-      tbody.innerHTML = "";
+      snapshot.forEach((childSnapshot) => {
+        const cita = childSnapshot.val();
+        const key = childSnapshot.key;
 
-      if (!citas) {
-        tbody.innerHTML = "<tr><td colspan='4'>No hay citas registradas.</td></tr>";
-        return;
-      }
+        const fila = tabla.insertRow();
 
-      Object.entries(citas).forEach(([id, cita]) => {
-        if (!cita || typeof cita !== "object") return;
+        fila.insertCell().textContent = cita.nombre || "Sin nombre";
+        fila.insertCell().textContent = cita.servicio || "N/A";
+        fila.insertCell().textContent = cita.fecha || "N/A";
+        fila.insertCell().textContent = cita.hora || "N/A";
 
-        const nombre = obtenerValor(cita.nombre);
-        const servicio = obtenerValor(cita.servicio);
-        const fecha = obtenerValor(cita.fecha);
-        const hora = obtenerValor(cita.hora);
-
-        const fila = document.createElement("tr");
-        fila.innerHTML = `
-          <td>${nombre}</td>
-          <td>${servicio}</td>
-          <td>${fecha}</td>
-          <td>${hora}</td>
-        `;
-        tbody.appendChild(fila);
+        const celdaAccion = fila.insertCell();
+        const btnEliminar = document.createElement("button");
+        btnEliminar.className = "btn-eliminar";
+        btnEliminar.textContent = "Eliminar";
+        btnEliminar.onclick = () => eliminarCita(key);
+        celdaAccion.appendChild(btnEliminar);
       });
-    }, error => {
-      console.error("Error al leer citas:", error);
-      document.getElementById("estado-admin").innerText = "Error al cargar citas.";
     });
   }
 
-  // Solo permite acceso si el usuario es administrador
-  firebase.auth().onAuthStateChanged(user => {
-    if (!user) {
-      window.location.href = "login.jsp";
-    } else {
-      const adminEmail = "juanca.9738@gmail.com";
-      if (user.email === adminEmail) {
-        document.getElementById("admin-email").innerText = "Administrador: " + user.email;
-        cargarCitas();
-      } else {
-        document.getElementById("estado-admin").innerText = "Acceso denegado: no eres administrador.";
-      }
+  function eliminarCita(key) {
+    if (confirm("¿Estás seguro de eliminar esta cita?")) {
+      firebase.database().ref('citas/' + key).remove()
+        .then(() => alert("✅ Cita eliminada."))
+        .catch((error) => alert("❌ Error al eliminar: " + error.message));
     }
-  });
+  }
+
+  // Cerrar sesión desde el botón del header
+  const logoutBtn = document.getElementById("btnLogout");
+  if (logoutBtn) {
+    logoutBtn.addEventListener("click", () => {
+      firebase.auth().signOut().then(() => {
+        alert("Has cerrado sesión.");
+        window.location.href = "index.jsp";
+      }).catch((error) => {
+        alert("Error al cerrar sesión: " + error.message);
+      });
+    });
+  }
 </script>
 
 </body>

@@ -6,6 +6,77 @@
 <head>
   <title>Agendar Cita - Gildardo Gutiérrez</title>
   <link rel="stylesheet" href="styles.css">
+  <style>
+    body, html {
+      margin: 0;
+      padding: 0;
+      height: 100%;
+      font-family: 'Poppins', sans-serif;
+    }
+
+    .agendar-page {
+      background-image: url("imagenes/salon-belleza.jpg"); /* misma imagen de index */
+      background-size: cover;
+      background-position: center;
+      height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+    }
+
+    .agendar-overlay {
+      background-color: rgba(0, 0, 0, 0.6);
+      padding: 40px;
+      border-radius: 16px;
+      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.3);
+      color: #fff;
+      width: 90%;
+      max-width: 500px;
+    }
+
+    .agendar-content h1 {
+      text-align: center;
+      margin-bottom: 30px;
+      font-size: 32px;
+      color: #fff;
+    }
+
+    form {
+      display: flex;
+      flex-direction: column;
+    }
+
+    form input,
+    form select {
+      padding: 12px;
+      margin-bottom: 15px;
+      border: none;
+      border-radius: 8px;
+      font-size: 16px;
+    }
+
+    .agenda-button {
+      padding: 12px;
+      background-color: #f4c10f;
+      border: none;
+      border-radius: 8px;
+      font-size: 16px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: background-color 0.3s;
+    }
+
+    .agenda-button:hover {
+      background-color: #e0af0b;
+    }
+
+    #mensaje-cita {
+      margin-top: 12px;
+      font-weight: 500;
+      text-align: center;
+    }
+  </style>
 </head>
 <body>
 
@@ -26,7 +97,7 @@
         <input type="date" id="fecha" required>
         <input type="time" id="hora" required>
         <button type="submit" class="agenda-button">Agendar</button>
-        <p id="mensaje-cita" style="margin-top: 10px;"></p>
+        <p id="mensaje-cita"></p>
       </form>
     </div>
   </div>
@@ -37,9 +108,9 @@
 <!-- Firebase SDK -->
 <script src="https://www.gstatic.com/firebasejs/11.10.0/firebase-app-compat.js"></script>
 <script src="https://www.gstatic.com/firebasejs/11.10.0/firebase-database-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/11.10.0/firebase-auth-compat.js"></script>
 
 <script>
-  // Configuración Firebase
   const firebaseConfig = {
     apiKey: "AIzaSyCDZvWq953WtoXTR-BvNDT-qiaocjrmeyM",
     authDomain: "peluqueriagildardo.firebaseapp.com",
@@ -50,10 +121,8 @@
     appId: "1:585702751886:web:41553292b19d9aa5cc13df"
   };
 
-  // Inicializar Firebase
   firebase.initializeApp(firebaseConfig);
 
-  // Función para guardar la cita
   function guardarCita(e) {
     e.preventDefault();
 
@@ -62,14 +131,13 @@
     const fecha = document.getElementById('fecha').value;
     const hora = document.getElementById('hora').value;
 
-    // Validación simple
     if (!nombre || !servicio || !fecha || !hora) {
-      document.getElementById('mensaje-cita').innerText = "Por favor complete todos los campos.";
+      mostrarMensaje("Por favor complete todos los campos.", "#f44336");
       return;
     }
 
     const nuevaCita = {
-      nombre,        // ✅ ahora es string directo
+      nombre,
       servicio,
       fecha,
       hora,
@@ -78,15 +146,34 @@
 
     firebase.database().ref('citas').push(nuevaCita)
       .then(() => {
-        document.getElementById('mensaje-cita').innerText = "✅ Cita agendada exitosamente.";
-        document.getElementById('mensaje-cita').style.color = "#4CAF50";
+        mostrarMensaje("✅ Cita agendada exitosamente.", "#4CAF50");
         document.querySelector('form').reset();
       })
       .catch(error => {
         console.error("Error al guardar cita:", error);
-        document.getElementById('mensaje-cita').innerText = "❌ Error al guardar la cita.";
-        document.getElementById('mensaje-cita').style.color = "#f66";
+        mostrarMensaje("❌ Error al guardar la cita.", "#f44336");
       });
+  }
+
+  function mostrarMensaje(texto, color) {
+    const mensaje = document.getElementById('mensaje-cita');
+    mensaje.innerText = texto;
+    mensaje.style.color = color;
+  }
+
+  // Función cerrar sesión para botón en el header (id="btnLogout")
+  const logoutBtn = document.getElementById("btnLogout");
+  if (logoutBtn) {
+    logoutBtn.addEventListener("click", () => {
+      firebase.auth().signOut()
+        .then(() => {
+          alert("Has cerrado sesión.");
+          window.location.href = "index.jsp";
+        })
+        .catch((error) => {
+          alert("Error al cerrar sesión: " + error.message);
+        });
+    });
   }
 </script>
 
