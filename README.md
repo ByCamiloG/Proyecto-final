@@ -1,8 +1,8 @@
-#Gildardo Gutiérrez Peluquería
+# Gildardo Gutiérrez Peluquería
 
 Plataforma web para la gestión integral de una peluquería moderna, que combina reserva de citas, simulación de cortes mediante IA, gestión de productos y contacto directo con los clientes. Desarrollado como proyecto académico de la Universidad Nacional de Colombia utilizando tecnologías como JSP, Firebase y Java.
 
-#📌 Características principales
+# 📌 Características principales
 
 - Registro e inicio de sesión con Firebase Authentication (correo y contraseña).
 - Agendamiento de citas: los clientes pueden elegir fecha, hora y tipo de servicio.
@@ -11,7 +11,7 @@ Plataforma web para la gestión integral de una peluquería moderna, que combina
 - Sección de contacto: formulario y mapa integrado de ubicación.
 - Responsive y accesible desde navegadores modernos en desktop y móviles.
 
-#🛠️ Tecnología empleada
+# 🛠️ Tecnología empleada
 - Frontend: JSP, HTML5, CSS3, JavaScript.
 - Backend: Servlets Java (GenerarCorteServlet) + Firebase Realtime Database.
 - Autenticación: Firebase Auth.
