@@ -37,51 +37,51 @@ Plataforma web para la gestión integral de una peluquería moderna, que combina
 
 # 📁 Estructura del proyecto
 
-/Web Pages
-├── META-INF/
-│   └── context.xml
-├── WEB-INF/
-│   └── web.xml (si lo tienes configurado)
-├── css/
-│   └── styles.css
-├── imagenes/
-│   ├── contacto.jpg
-│   ├── facebook.png
-│   ├── gg-logo.png
-│   ├── instagram.png
-│   ├── salon-belleza.jpg
-│   ├── user-icon.png
-│   └── whatsapp.png
-├── includes/
-│   ├── footer.jsp
-│   └── header.jsp
-├── js/
-│   └── script.js
-├── admin.jsp
-├── agendar.jsp
-├── ajustes.jsp
-├── contacto.jsp
-├── index.jsp
-├── login.jsp
-├── perfil.jsp
-├── productos.jsp
-├── registro.jsp
-└── servicios.jsp
+/Web Pages <br>
+├── META-INF/ <br>
+│   └── context.xml <br>
+├── WEB-INF/ <br>
+│   └── web.xml (si lo tienes configurado) <br>
+├── css/ <br>
+│   └── styles.css <br>
+├── imagenes/ <br>
+│   ├── contacto.jpg <br>
+│   ├── facebook.png <br>
+│   ├── gg-logo.png <br>
+│   ├── instagram.png <br>
+│   ├── salon-belleza.jpg <br>
+│   ├── user-icon.png <br>
+│   └── whatsapp.png <br>
+├── includes/ <br>
+│   ├── footer.jsp <br>
+│   └── header.jsp <br>
+├── js/ <br>
+│   └── script.js <br>
+├── admin.jsp <br>
+├── agendar.jsp <br>
+├── ajustes.jsp <br>
+├── contacto.jsp <br>
+├── index.jsp <br>
+├── login.jsp <br>
+├── perfil.jsp <br>
+├── productos.jsp <br>
+├── registro.jsp <br>
+└── servicios.jsp <br>
 
-/Source Packages
-└── com.gildardo/
-    └── GenerarCorteServlet.java
+/Source Packages <br>
+└── com.gildardo/ <br>
+    └── GenerarCorteServlet.java <br>
 
-/Libraries
-├── json-20240303.jar
-├── okhttp-4.9.3.jar
-├── okio-2.8.0.jar
-├── gson-2.10.1.jar
-├── kotlin-stdlib-*.jar
-└── json-20210307.jar
+/Libraries <br>
+├── json-20240303.jar <br>
+├── okhttp-4.9.3.jar <br>
+├── okio-2.8.0.jar <br>
+├── gson-2.10.1.jar <br>
+├── kotlin-stdlib-*.jar <br>
+└── json-20210307.jar <br>
 
-/Servidor
-└── Apache Tomcat o TomEE configurado
+/Servidor <br>
+└── Apache Tomcat o TomEE configurado <br>
 
-/JDK
-└── JDK 24 (Default)
+/JDK <br>
+└── JDK 24 (Default) <br>
