@@ -38,16 +38,12 @@ Plataforma web para la gestión integral de una peluquería moderna, que combina
 # 📁 Estructura del proyecto
 
 /Web Pages
-│
 ├── META-INF/
 │   └── context.xml
-│
 ├── WEB-INF/
 │   └── web.xml (si lo tienes configurado)
-│
 ├── css/
 │   └── styles.css
-│
 ├── imagenes/
 │   ├── contacto.jpg
 │   ├── facebook.png
@@ -56,14 +52,11 @@ Plataforma web para la gestión integral de una peluquería moderna, que combina
 │   ├── salon-belleza.jpg
 │   ├── user-icon.png
 │   └── whatsapp.png
-│
 ├── includes/
 │   ├── footer.jsp
 │   └── header.jsp
-│
 ├── js/
 │   └── script.js
-│
 ├── admin.jsp
 ├── agendar.jsp
 ├── ajustes.jsp
