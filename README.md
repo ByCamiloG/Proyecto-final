@@ -1,10 +1,10 @@
 # Gildardo Gutiérrez Peluquería
 
-Plataforma web para la gestión integral de una peluquería moderna, que combina reserva de citas, simulación de cortes mediante IA, gestión de productos y contacto directo con los clientes. Desarrollado como proyecto académico de la Universidad Nacional de Colombia utilizando tecnologías como JSP, Firebase y Java. La url del proyecto es: https://proyecto-final-06gi.onrender.com el servidor si no muestra la pagina es por que se esta iniciando 
+Plataforma web para la gestión integral de una peluquería moderna, que combina reserva de citas, simulación de cortes mediante IA, gestión de productos y contacto directo con los clientes. Desarrollado como proyecto académico de la Universidad Nacional de Colombia utilizando tecnologías como JSP, Firebase y Java. La url del proyecto es: https://proyecto-final-06gi.onrender.com el servidor si no muestra la pagina es por que se esta iniciando ya que esta se encuentra alojada en render y este servicio se suspende por inactividad
 
 # 📌 Características principales
 
-- Registro e inicio de sesión con Firebase Authentication (correo y contraseña).
+- Registro e inicio de sesión con Firebase Authentication (correo: Juanca.9738@gmail.com y contraseña: Camilo123 este usuario tiene los parametros admin).
 - Agendamiento de citas: los clientes pueden elegir fecha, hora y tipo de servicio.
 - Panel administrativo: incluye listado y eliminación de citas, además de gestión CRUD de productos.
 - Simulación de cortes con IA: carga de imagen y aplicación de estilo mediante la API de Replicate a través de un servlet Java.
@@ -85,3 +85,13 @@ Plataforma web para la gestión integral de una peluquería moderna, que combina
 
 /JDK <br>
 └── JDK 24 (Default) <br>
+
+# 📷 Vista previa
+<img width="1851" height="956" alt="image" src="https://github.com/user-attachments/assets/acfeea05-dd76-478f-b4d0-31d4e0d9fe05" />
+<img width="1853" height="954" alt="image" src="https://github.com/user-attachments/assets/ba1c9c8e-9701-45de-abf3-3f6a40d5609c" />
+<img width="1856" height="950" alt="image" src="https://github.com/user-attachments/assets/4bfdc224-9460-4bf4-87f2-813e2b3a559c" />
+<img width="1854" height="958" alt="image" src="https://github.com/user-attachments/assets/3795ba0d-a65d-4a56-8f33-a42d5e332ad2" />
+
+
+
+
